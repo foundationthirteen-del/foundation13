@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Foundation 13</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #102a43;
+      --accent: #0077ff;
+      --bg: #f5f7fb;
+      --text: #1f2933;
+      --card: #ffffff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16,42,67,0.97);
+      color: #fff;
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+    nav a {
+      color: #e0e7ff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-size: 0.9rem;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .hero {
+      background: linear-gradient(135deg, #102a43, #243b53);
+      color: #fff;
+      padding: 4rem 1.25rem 3rem;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 3vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+    .hero p {
+      max-width: 540px;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #e4e7eb;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: #fff;
+      color: var(--primary);
+      box-shadow: 0 8px 18px rgba(15,23,42,0.3);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(15,23,42,0.35);
+    }
+    .btn-outline {
+      border-color: #e4e7eb;
+      color: #e4e7eb;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    .hero-card {
+      background: rgba(15,23,42,0.7);
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.4rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.55);
+      font-size: 0.9rem;
+    }
+    .hero-card h2 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #cbd2ff;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      color: #e5e7eb;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid #d8e2ec;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    h2.section-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      color: var(--primary);
+    }
+    p.section-intro {
+      margin-bottom: 1.5rem;
+      color: #52606d;
+      max-width: 640px;
+      font-size: 0.98rem;
+    }
+    .three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 1.1rem;
+      padding: 1.25rem 1.2rem;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.06);
+      border: 1px solid #e4e7eb;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+    .card p {
+      font-size: 0.9rem;
+      color: #52606d;
+    }
+    ul {
+      padding-left: 1.1rem;
+      margin: 0.4rem 0 0.8rem;
+      font-size: 0.9rem;
+      color: #52606d;
+    }
+    li + li {
+      margin-top: 0.25rem;
+    }
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+    .pill {
+      background: #e4e7eb;
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.75rem;
+      color: #52606d;
+    }
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+    .subheading {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+    .emoji-row {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 1.4rem;
+      margin: 0.75rem 0 1rem;
+    }
+    .emoji-tag {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #52606d;
+    }
+    footer {
+      border-top: 1px solid #d8e2ec;
+      padding: 1.5rem 1.25rem 2rem;
+      font-size: 0.8rem;
+      color: #9fb3c8;
+      text-align: center;
+    }
+    a.inline-link {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a.inline-link:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .three-cols {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-cols {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      nav {
+        display: none;
+      }
+      .hero {
+        padding-top: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">FOUNDATION 13</div>
+      <nav>
+        <a href="#about">Home</a>
+        <a href="#pathways">Pathways</a>
+        <a href="#connect">Connect</a>
+        <a href="#opportunities">Opportunities</a>
+        <a href="#support">Support</a>
+        <a href="#about-foundation13">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Year 13 is just the beginning.</h1>
+        <p>
+          Foundation 13 is a free alumni hub that helps young people stay connected,
+          find their path, and feel supported in the years after school.
+        </p>
+        <div class="hero-buttons">
+          <a href="#pathways" class="btn btn-primary">Explore Pathways</a>
+          <a href="#connect" class="btn btn-outline">Get Connected</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2>What is Foundation 13?</h2>
+        <p>
+          We bring together recent school leavers and alumni to share real stories,
+          offer practical guidance, open doors to new opportunities, and strengthen
+          wellbeing through community.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Alumni network</span>
+          <span class="tag">Mentoring</span>
+          <span class="tag">Pathways</span>
+          <span class="tag">Wellbeing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-intro">
+        Foundation 13 exists for the years after school &mdash; when life gets real
+        and the path isn&apos;t always clear. Here&apos;s how we help young people grow together.
+      </p>
+      <div class="three-cols">
+        <div class="card">
+          <h3>Explore pathways</h3>
+          <p>Read real stories from alumni about life after school &mdash; the good, the messy, and everything in between.</p>
+        </div>
+        <div class="card">
+          <h3>Connect with alumni</h3>
+          <p>Search for alumni in fields you&apos;re curious about and reach out for advice or guidance.</p>
+        </div>
+        <div class="card">
+          <h3>Find opportunities</h3>
+          <p>Discover jobs, internships, events and other chances to grow your skills and network.</p>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <h3 class="subheading">Who is Foundation 13 for?</h3>
+      <p class="section-intro">
+        Foundation 13 supports:
+      </p>
+      <ul>
+        <li>Year 12 and recent school leavers</li>
+        <li>Alumni in their first 10 years out of school</li>
+        <li>Older alumni who want to mentor and give back</li>
+        <li>Staff and coaches who support young people in transition</li>
+      </ul>
+    </section>
+
+    <section id="pathways">
+      <h2 class="section-title">Year 13 Hub</h2>
+      <p class="section-intro">
+        Leaving school can feel exciting, overwhelming, or both. These short stories and guides,
+        shared by alumni, offer a real look at what comes next &mdash; uni, work, trades, gap years,
+        and figuring it all out along the way.
+      </p>
+
+      <div class="three-cols">
+        <div class="card">
+          <h3>Study &mdash; Uni &amp; TAFE</h3>
+          <p>
+            Thinking about studying after school? Hear from alumni who&apos;ve been there.
+          </p>
+          <ul>
+            <li>&ldquo;What I wish I knew in first year uni&rdquo;</li>
+            <li>&ldquo;Changing courses and not feeling like a failure&rdquo;</li>
+            <li>&ldquo;Is TAFE right for me?&rdquo;</li>
+          </ul>
+          <p style="font-size:0.85rem;">
+            <em>Later, you can link each story to its own page or PDF.</em>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Work &amp; Trades</h3>
+          <p>
+            Not everyone goes straight to uni. Explore stories from alumni who jumped into work or trades.
+          </p>
+          <ul>
+            <li>&ldquo;My first apprenticeship: what I learnt&rdquo;</li>
+            <li>&ldquo;Starting full-time work at 18&rdquo;</li>
+            <li>&ldquo;Earning while you learn&rdquo;</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Gap Years &amp; Figuring It Out</h3>
+          <p>
+            Some alumni take time to breathe, explore or reset &mdash; and many don&apos;t have it all sorted yet.
+          </p>
+          <ul>
+            <li>&ldquo;Working holiday in the UK: reality vs Instagram&rdquo;</li>
+            <li>&ldquo;Why I took a year off before uni&rdquo;</li>
+            <li>&ldquo;I had no idea what I wanted to do &mdash; and that was okay&rdquo;</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect">
+      <h2 class="section-title">Connect with alumni</h2>
+      <p class="section-intro">
+        Nobody should have to figure out life after school alone. Join the Foundation 13 network to connect with
+        alumni who can share their experiences, answer questions and help you navigate the transitions ahead.
+      </p>
+
+      <div class="two-cols">
+        <div class="card">
+          <h3>Join the Foundation 13 Network</h3>
+          <p>
+            Use these links to capture sign-ups with Google Forms (or similar). Replace the <em>#</em> with your real form URLs.
+          </p>
+          <p>
+            <a class="inline-link" href="#" target="_blank" rel="noopener noreferrer">
+              Join the Foundation 13 Network (Google Form)
+            </a><br />
+            <a class="inline-link" href="#" target="_blank" rel="noopener noreferrer">
+              Sign up as a Mentor (Google Form)
+            </a>
+          </p>
+          <p style="font-size:0.85rem;">
+            Form fields might include: name, grad year, current pathway, interests, and whether they&apos;re happy to be contacted.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Alumni Directory</h3>
+          <p>
+            You can embed a Google Sheet, Airtable, or Notion database here to show alumni who are open to being contacted.
+          </p>
+          <ul>
+            <li>First name</li>
+            <li>Grad year</li>
+            <li>Pathway (course, trade, job)</li>
+            <li>Interests</li>
+            <li>&ldquo;Happy to be contacted&rdquo; status</li>
+          </ul>
+          <p style="font-size:0.85rem;">
+            In Google Sites, use <strong>Insert &rarr; Embed</strong> to drop in your live directory.
+          </p>
+        </div>
+      </div>
+
+      <br />
+
+      <h3 class="subheading">How to connect safely</h3>
+      <p class="section-intro">
+        To contact an alum, email <strong>[Foundation 13 coordinator email]</strong> with:
+      </p>
+      <ul>
+        <li>Your name</li>
+        <li>The alum you&apos;d like to connect with</li>
+        <li>What you&apos;d like to ask about</li>
+      </ul>
+      <p class="section-intro">
+        We&apos;ll help make a safe, respectful introduction.
+      </p>
+    </section>
+
+    <section id="opportunities">
+      <h2 class="section-title">Opportunities &amp; Events</h2>
+      <p class="section-intro">
+        Explore jobs, internships, volunteering roles and upcoming alumni events. You can connect this section to
+        Google Sheets, Notion or Airtable to keep everything updated without touching the code.
+      </p>
+
+      <div class="two-cols">
+        <div class="card">
+          <h3>Opportunities</h3>
+          <p>
+            Share roles and experience offered by alumni, organisations and the wider community.
+          </p>
+          <ul>
+            <li>Casual or part-time jobs</li>
+            <li>Internships and graduate programs</li>
+            <li>Volunteering and coaching opportunities</li>
+            <li>Short courses and programs</li>
+          </ul>
+          <p>
+            <a class="inline-link" href="#" target="_blank" rel="noopener noreferrer">
+              Submit an opportunity (Google Form)
+            </a>
+          </p>
+          <p style="font-size:0.85rem;">
+            Embed your opportunities list below via <strong>Insert &rarr; Embed</strong> once your sheet or database is ready.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Events &amp; Reunions</h3>
+          <p>
+            Keep alumni connected through social catch-ups, networking nights and reunions.
+          </p>
+          <ul>
+            <li>Alumni BBQs and social events</li>
+            <li>Networking and panel nights</li>
+            <li>Reunions and special occasions</li>
+          </ul>
+          <p style="font-size:0.85rem;">
+            Use a separate sheet or view for events, with columns such as event name, date, location, who it&apos;s for,
+            and RSVP link.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="support">
+      <h2 class="section-title">Support &amp; Wellbeing</h2>
+      <p class="section-intro">
+        Leaving school can be exciting, stressful, confusing or overwhelming. Wherever you&apos;re at, support is available.
+      </p>
+
+      <div class="two-cols">
+        <div>
+          <h3 class="subheading">Check in with yourself</h3>
+          <p>
+            Choose the option that best describes how you&apos;re feeling today:
+          </p>
+          <div class="emoji-row">
+            <div class="emoji-tag">😄<span>Good</span></div>
+            <div class="emoji-tag">🙂<span>Okay</span></div>
+            <div class="emoji-tag">😐<span>Not sure</span></div>
+            <div class="emoji-tag">😕<span>Struggling</span></div>
+            <div class="emoji-tag">😞<span>Really not okay</span></div>
+          </div>
+          <p style="font-size:0.9rem;">
+            However you answered, you&apos;re not alone. If you&apos;re feeling okay, you might like to explore the Pathways Hub
+            for tips on building habits, balancing study, work and life, and staying connected after school.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Where to get help</h3>
+          <p>
+            If you&apos;re finding things tough, reaching out is always a strong step.
+          </p>
+          <p class="subheading">Talk to someone you trust</p>
+          <ul>
+            <li>A friend, parent, teacher, coach or trusted adult</li>
+          </ul>
+          <p class="subheading">School &amp; community support</p>
+          <ul>
+            <li>Add local wellbeing contacts or services here.</li>
+          </ul>
+          <p class="subheading">Professional support services</p>
+          <ul>
+            <li>Headspace</li>
+            <li>Beyond Blue</li>
+            <li>Lifeline</li>
+            <li>Kids Helpline (and other local services)</li>
+          </ul>
+          <p style="font-size:0.8rem; margin-top:0.5rem;">
+            Foundation 13 cannot offer crisis or emergency support. If you are in immediate danger, contact emergency services.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-foundation13">
+      <h2 class="section-title">About Foundation 13</h2>
+      <p class="section-intro">
+        Foundation 13 was created to support the transition after school &mdash; the &ldquo;Year 13&rdquo; experience.
+        Our mission is to help young people stay connected, find direction, and grow through community.
+      </p>
+
+      <h3 class="subheading">What we believe</h3>
+      <ul>
+        <li>Alumni have powerful wisdom to share.</li>
+        <li>No young person should face transition alone.</li>
+        <li>Connections create opportunity.</li>
+        <li>Sharing real stories builds confidence.</li>
+        <li>Community strengthens wellbeing.</li>
+      </ul>
+
+      <br />
+
+      <h3 class="subheading">Contact</h3>
+      <p class="section-intro">
+        Email: <strong>[insert contact email]</strong><br />
+        Socials: <strong>[insert links if applicable]</strong>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Foundation 13. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
